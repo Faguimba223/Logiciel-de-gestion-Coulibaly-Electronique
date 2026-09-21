@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Boutique Electronique | Gestion boutique</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+	<div class="app-shell">
+		<aside class="sidebar">
+			<a class="brand" href="#dashboard" data-view="dashboard"><span
+					class="brand-mark"></span><span><strong>COULIBALY ELECTRONIQUE</strong><small></small></span></a>
+			<nav class="main-nav" aria-label="Navigation principale">
+				<p class="nav-label">Espace de travail</p>
+				<button class="nav-item active" data-view="dashboard"><span class="nav-icon">⌂</span>Vue
+					d'ensemble</button>
+				<button class="nav-item" data-view="products"><span class="nav-icon">▦</span>Produits <b
+						id="product-count-badge">0</b></button>
+				<button class="nav-item" data-view="sales"><span class="nav-icon">↗</span>Ventes</button><button
+					class="nav-item" data-view="stock"><span class="nav-icon">◫</span>Stock</button>
+				<p class="nav-label second-label">Outils</p><button class="nav-item" data-view="reports"><span
+						class="nav-icon">◒</span>Rapports</button><button class="nav-item" data-view="settings"><span
+						class="nav-icon">⚙</span>Paramètres</button>
+			</nav>
+			<div class="sidebar-bottom">
+				<div class="store-status"><span class="status-dot"></span><span><strong>Boutique
+							ouverte</strong><small>Dernière synchro : à l'instant</small></span></div>
+				<div class="profile"><span
+						class="avatar">FagDév</span><span><strong>Faguimba</strong><small>Administrateur</small></span><span
+						class="more">•••</span></div>
+			</div>
+		</aside>
+		<main class="main-content">
+			<header class="topbar"><button class="mobile-menu" aria-label="Ouvrir le menu">☰</button>
+				<div class="breadcrumb"><span>Ma boutique</span><i>/</i><strong id="page-title">BOUTIQUE ELECTRONIQUE
+						SAMAKONE</strong></div>
+				<div class="top-actions"><button class="icon-button" title="Notifications"
+						aria-label="Notifications"><span class="notification-dot"></span></button><button
+						class="help-button">? <span>Aide</span></button><button class="quick-add"
+						data-open-modal="product-modal"><span>+</span> Nouveau produit</button></div>
+			</header>
+			<div class="page-area">
+				<section class="view active-view" id="dashboard-view">
+					<div class="page-heading">
+						<div>
+							<p class="eyebrow"></p>
+							<h1>Bonjour, Samakone <span class="wave"></span></h1>
+							<p class="heading-subtitle">Voici ce qui se passe dans votre boutique aujourd'hui.</p>
+						</div><button class="date-filter">Cette semaine <span>⌄</span></button>
+					</div>
+					<div class="metric-grid">
+						<article class="metric-card revenue">
+							<div class="metric-top"><span>Chiffre d'affaires</span><span class="metric-icon">↗</span>
+							</div><strong id="revenue-value">0 FCFA</strong>
+							<div class="metric-foot"><span class="trend positive">↗ 12,8%</span><span>vs semaine
+									passée</span></div>
+						</article>
+						<article class="metric-card orders">
+							<div class="metric-top"><span>Commandes</span><span class="metric-icon">◒</span></div>
+							<strong id="orders-value">0</strong>
+							<div class="metric-foot"><span class="trend positive">↗ 8,4%</span><span>vs semaine
+									passée</span></div>
+						</article>
+						<article class="metric-card average">
+							<div class="metric-top"><span>Panier moyen</span><span class="metric-icon">◌</span></div>
+							<strong id="average-value">0 FCFA</strong>
+							<div class="metric-foot"><span class="trend positive">↗ 4,2%</span><span>vs semaine
+									passée</span></div>
+						</article>
+						<article class="metric-card alerts">
+							<div class="metric-top"><span>Alertes stock</span><span class="metric-icon">!</span></div>
+							<strong id="alerts-value">0</strong>
+							<div class="metric-foot"><span class="trend warning">À surveiller</span><span>produits à
+									réapprovisionner</span></div>
+						</article>
+					</div>
+					<div class="dashboard-grid">
+						<article class="panel sales-panel">
+							<div class="panel-header">
+								<div>
+									<h2>Performance des ventes</h2>
+									<p>Evolution du chiffre d'affaires</p>
+								</div><select id="chart-period" aria-label="Période">
+									<option>7 derniers jours</option>
+									<option>30 derniers jours</option>
+								</select>
+							</div>
+							<div class="chart-wrap">
+								<div class="chart-y">
+									<span>1M</span><span>750k</span><span>500k</span><span>250k</span><span>0</span>
+								</div>
+								<div class="chart-area">
+									<div class="grid-lines"><i></i><i></i><i></i><i></i><i></i></div><svg
+										class="sales-chart" viewBox="0 0 620 220" preserveAspectRatio="none">
+										<defs>
+											<linearGradient id="chart-fill" x1="0" x2="0" y1="0" y2="1">
+												<stop offset="0%" stop-color="#d9f47c" stop-opacity=".48" />
+												<stop offset="100%" stop-color="#d9f47c" stop-opacity="0" />
+											</linearGradient>
+										</defs>
+										<path class="chart-fill"
+											d="M0 164 C40 154,55 170,92 133 S145 155,185 116 S238 132,277 88 S333 105,370 91 S424 115,460 59 S512 77,548 34 S588 55,620 18 L620 220 L0 220 Z" />
+										<path class="chart-line"
+											d="M0 164 C40 154,55 170,92 133 S145 155,185 116 S238 132,277 88 S333 105,370 91 S424 115,460 59 S512 77,548 34 S588 55,620 18" />
+									</svg>
+									<div class="chart-x">
+										<span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span><span>Dim</span>
+									</div>
+								</div>
+							</div>
+						</article>
+						<article class="panel stock-panel">
+							<div class="panel-header">
+								<div>
+									<h2>Etat du stock</h2>
+									<p>Vue rapide de votre inventaire</p>
+								</div><button class="text-button" data-view="stock">Voir tout <span>→</span></button>
+							</div>
+							<div class="stock-ring">
+								<div class="ring">
+									<div><strong id="stock-total">0</strong><small>références</small></div>
+								</div>
+								<div class="stock-legend"><span><i class="green-dot"></i>En stock <b
+											id="in-stock-count">0</b></span><span><i class="orange-dot"></i>Stock faible
+										<b id="low-stock-count">0</b></span><span><i class="red-dot"></i>Rupture <b
+											id="out-stock-count">0</b></span></div>
+							</div>
+						</article>
+					</div>
+					<div class="bottom-grid">
+						<article class="panel activity-panel">
+							<div class="panel-header">
+								<div>
+									<h2>Activité récente</h2>
+									<p>Les dernières actions sur votre boutique</p>
+								</div><button class="text-button" data-view="sales">Tout voir <span>→</span></button>
+							</div>
+							<div id="activity-list" class="activity-list"></div>
+						</article>
+						<article class="panel top-products-panel">
+							<div class="panel-header">
+								<div>
+									<h2>Produits populaires</h2>
+									<p>Les meilleures ventes du mois</p>
+								</div><button class="text-button" data-view="products">Catalogue <span>→</span></button>
+							</div>
+							<div id="top-products" class="top-products"></div>
+						</article>
+					</div>
+				</section>
+				<section class="view" id="products-view">
+					<div class="page-heading">
+						<div>
+							<p class="eyebrow">CATALOGUE</p>
+							<h1>Vos produits</h1>
+							<p class="heading-subtitle">Gérez les articles disponibles dans votre boutique.</p>
+						</div><button class="quick-add" data-open-modal="product-modal"><span>+</span> Ajouter un
+							produit</button>
+					</div>
+					<div class="toolbar"><label class="search-box"><span>⌕</span><input id="product-search"
+								type="search" placeholder="Rechercher un produit..."></label><select
+							id="category-filter">
+							<option value="all">Toutes les catégories</option>
+						</select><button class="outline-button" id="export-products">↓ Exporter</button></div>
+					<div class="panel table-panel">
+						<div class="table-scroll">
+							<table>
+								<thead>
+									<tr>
+										<th>Produit</th>
+										<th>Catégorie</th>
+										<th>Prix de vente</th>
+										<th>Stock</th>
+										<th>Statut</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody id="products-table"></tbody>
+							</table>
+						</div>
+					</div>
+				</section>
+				<section class="view" id="sales-view">
+					<div class="page-heading">
+						<div>
+							<p class="eyebrow">TRANSACTIONS</p>
+							<h1>Ventes</h1>
+							<p class="heading-subtitle">Suivez toutes les ventes réalisées.</p>
+						</div><button class="quick-add" data-open-modal="sale-modal"><span>+</span> Enregistrer une
+							vente</button>
+					</div>
+					<div class="metric-grid sales-metrics">
+						<article class="metric-card revenue">
+							<div class="metric-top"><span>Ventes du jour</span><span class="metric-icon">↗</span></div>
+							<strong id="today-revenue">0 FCFA</strong>
+							<div class="metric-foot"><span class="trend positive">En
+									direct</span><span>aujourd'hui</span></div>
+						</article>
+						<article class="metric-card orders">
+							<div class="metric-top"><span>Transactions</span><span class="metric-icon">◒</span></div>
+							<strong id="transaction-count">0</strong>
+							<div class="metric-foot"><span>Historique complet</span></div>
+						</article>
+					</div>
+					<div class="panel table-panel">
+						<div class="panel-header">
+							<div>
+								<h2>Historique des ventes</h2>
+								<p>Les transactions les plus récentes</p>
+							</div>
+						</div>
+						<div class="table-scroll">
+							<table>
+								<thead>
+									<tr>
+										<th>Référence</th>
+										<th>Produit</th>
+										<th>Client</th>
+										<th>Date</th>
+										<th>Quantité</th>
+										<th>Total</th>
+									</tr>
+								</thead>
+								<tbody id="sales-table"></tbody>
+							</table>
+						</div>
+					</div>
+				</section>
+				<section class="view" id="stock-view">
+					<div class="page-heading">
+						<div>
+							<p class="eyebrow">INVENTAIRE</p>
+							<h1>Gestion du stock</h1>
+							<p class="heading-subtitle">Anticipez les ruptures et ajustez vos quantités.</p>
+						</div><button class="quick-add" data-open-modal="stock-modal"><span>+</span> Mouvement de
+							stock</button>
+					</div>
+					<div class="stock-alert-banner"><span class="alert-symbol">!</span>
+						<div><strong id="stock-alert-title">Stock maîtrisé</strong>
+							<p id="stock-alert-copy">Toutes vos références sont correctement approvisionnées.</p>
+						</div><button data-view="products">Voir les produits concernés →</button>
+					</div>
+					<div class="panel table-panel">
+						<div class="panel-header">
+							<div>
+								<h2>Inventaire actuel</h2>
+								<p>Dernière mise à jour : à l'instant</p>
+							</div><select id="stock-filter">
+								<option value="all">Tous les statuts</option>
+								<option value="low">Stock faible</option>
+								<option value="out">Rupture</option>
+							</select>
+						</div>
+						<div class="table-scroll">
+							<table>
+								<thead>
+									<tr>
+										<th>Produit</th>
+										<th>SKU</th>
+										<th>Stock actuel</th>
+										<th>Seuil d'alerte</th>
+										<th>Statut</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody id="stock-table"></tbody>
+							</table>
+						</div>
+					</div>
+				</section>
+				<section class="view simple-view" id="reports-view">
+					<p class="eyebrow">ANALYSE</p>
+					<h1>Rapports</h1>
+					<p class="heading-subtitle">Les indicateurs détaillés de votre activité seront disponibles ici.</p>
+					<div class="empty-state"><span>◒</span>
+						<h2>Vos rapports arrivent bientôt</h2>
+						<p>Continuez à enregistrer vos ventes pour enrichir vos analyses.</p>
+					</div>
+				</section>
+				<section class="view simple-view" id="settings-view">
+					<p class="eyebrow">CONFIGURATION</p>
+					<h1>Paramètres</h1>
+					<p class="heading-subtitle">Personnalisez les réglages de votre boutique.</p>
+					<form class="settings-form panel" id="settings-form"><label>Nom de la boutique<input
+								name="storeName" id="store-name" required></label><label>Devise<select name="currency"
+								id="currency">
+								<option value="FCFA">Franc CFA (FCFA)</option>
+								<option value="EUR">Euro (€)</option>
+								<option value="USD">Dollar ($)</option>
+							</select></label><label>Apparence<select name="theme" id="theme">
+								<option value="light">Clair</option>
+								<option value="dark">Sombre</option>
+							</select></label><label>Seuil d'alerte par défaut<input name="defaultThreshold"
+								id="default-threshold" type="number" min="0" required></label><button
+							class="submit-button" type="submit">Enregistrer les paramètres <span>→</span></button>
+					</form>
+				</section>
+			</div>
+		</main>
+	</div>
+	<footer class="app-footer"><img src="image/logo_noir.jpg"
+			alt="Logo FagDév"><span>Logiciel développé par <strong>Faguimba, alliance FagDev</strong></span></footer>
+	<div class="modal-backdrop" id="product-modal">
+		<div class="modal"><button class="modal-close" aria-label="Fermer">×</button>
+			<p class="eyebrow">CATALOGUE</p>
+			<h2>Ajouter un produit</h2>
+			<p class="modal-subtitle">Ajoutez une nouvelle référence à votre inventaire.</p>
+			<form id="product-form"><label>Nom du produit<input name="name" required
+						placeholder="Ex. Casque audio Pro"></label>
+				<div class="form-row"><label>Catégorie<select name="category">
+							<option>Audio</option>
+							<option>Smartphones</option>
+							<option>Informatique</option>
+							<option>Accessoires</option>
+							<option>Maison connectée</option>
+						</select></label><label>Prix (FCFA)<input name="price" required type="number" min="0"
+							placeholder="25000"></label></div>
+				<div class="form-row"><label>Stock initial<input name="stock" required type="number" min="0"
+							placeholder="10"></label><label>Seuil d'alerte<input name="threshold" required type="number"
+							min="0" value="5"></label></div><button class="submit-button" type="submit">Ajouter au
+					catalogue <span>→</span></button>
+			</form>
+		</div>
+	</div>
+	<div class="modal-backdrop" id="sale-modal">
+		<div class="modal"><button class="modal-close" aria-label="Fermer">×</button>
+			<p class="eyebrow">TRANSACTION</p>
+			<h2>Enregistrer une vente</h2>
+			<p class="modal-subtitle">Le stock sera automatiquement mis à jour.</p>
+			<form id="sale-form"><label>Produit<select name="product" id="sale-product" required></select></label>
+				<div class="form-row"><label>Quantité<input name="quantity" type="number" min="1" value="1"
+							required></label><label>Client<input name="customer" placeholder="Client comptoir"></label>
+				</div><button class="submit-button" type="submit">Enregistrer la vente <span>→</span></button>
+			</form>
+		</div>
+	</div>
+	<div class="modal-backdrop" id="stock-modal">
+		<div class="modal"><button class="modal-close" aria-label="Fermer">×</button>
+			<p class="eyebrow">INVENTAIRE</p>
+			<h2>Mouvement de stock</h2>
+			<p class="modal-subtitle">Ajoutez ou retirez des unités d'un produit.</p>
+			<form id="stock-form"><label>Produit<select name="product" id="stock-product" required></select></label>
+				<div class="form-row"><label>Type<select name="type">
+							<option value="add">Réception (+)</option>
+							<option value="remove">Correction (-)</option>
+						</select></label><label>Quantité<input name="quantity" type="number" min="1" value="1"
+							required></label></div><button class="submit-button" type="submit">Mettre à jour le stock
+					<span>→</span></button>
+			</form>
+		</div>
+	</div>
+	<div class="toast" id="toast"></div>
+	<script src="index.js"></script>
+	<script>
+		const themeSelect = document.querySelector('#theme');
+		const savedTheme = localStorage.getItem('voltix-theme') || 'light';
+
+		function applySelectedTheme(theme) {
+			document.body.classList.toggle('dark-theme', theme === 'dark');
+			themeSelect.value = theme;
+			localStorage.setItem('voltix-theme', theme);
+		}
+
+		applySelectedTheme(savedTheme);
+		themeSelect.addEventListener('change', event => applySelectedTheme(event.target.value));
+		document.querySelector('#settings-form').addEventListener('submit', () => {
+			localStorage.setItem('voltix-theme', themeSelect.value);
+		});
+	</script>
+</body>
+
+</html>
